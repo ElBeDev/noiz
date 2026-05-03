@@ -29,7 +29,7 @@ export async function submitContact(
   const resend = new Resend(process.env.RESEND_API_KEY);
 
   const { error } = await resend.emails.send({
-    from: "NOIZ Contacto <onboarding@resend.dev>",
+    from: "NOIZ Contacto <hola@noiz.com.mx>",
     to: "hola@noiz.com.mx",
     replyTo: email,
     subject: `Nuevo contacto: ${name}`,
