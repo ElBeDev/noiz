@@ -49,6 +49,27 @@ export async function submitContact(
     return { status: "error", message: "Hubo un error al enviar tu mensaje. Inténtalo de nuevo." };
   }
 
+  // Confirmación al usuario
+  await resend.emails.send({
+    from: "NOIZ <hola@noiz.com.mx>",
+    to: email,
+    subject: "Recibimos tu mensaje — NOIZ",
+    html: `
+      <div style="font-family: sans-serif; max-width: 560px; margin: 0 auto; padding: 40px 24px; color: #111;">
+        <h1 style="font-size: 24px; margin-bottom: 8px;">Hola, ${name} 👋</h1>
+        <p style="font-size: 16px; line-height: 1.6; color: #444;">
+          Recibimos tu mensaje y ya estamos en ello. En breve uno de nuestros estrategas te contactará personalmente.
+        </p>
+        <p style="font-size: 16px; line-height: 1.6; color: #444;">
+          Mientras tanto, si tienes alguna duda urgente escríbenos directo a
+          <a href="mailto:hola@noiz.com.mx" style="color: #111; font-weight: 600;">hola@noiz.com.mx</a>.
+        </p>
+        <hr style="border: none; border-top: 1px solid #e5e5e5; margin: 32px 0;" />
+        <p style="font-size: 13px; color: #999;">NOIZ — Marcas que Venden · <a href="https://noiz.com.mx" style="color: #999;">noiz.com.mx</a></p>
+      </div>
+    `,
+  });
+
   return {
     status: "success",
     message: "¡Mensaje recibido! Te contactaremos pronto.",
