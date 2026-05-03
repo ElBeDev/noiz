@@ -71,7 +71,7 @@ export default function CTA() {
           </p>
 
           <a
-            href="mailto:hola@noiz.mx"
+            href="mailto:hola@noiz.com.mx"
             className="group relative inline-flex items-center gap-4 border border-white/20 px-8 py-5 font-display font-bold text-sm tracking-[0.2em] uppercase text-white hover:border-accent hover:text-black hover:bg-accent transition-all duration-300 shrink-0"
           >
             <span>Hablemos</span>

@@ -58,7 +58,7 @@ export default function ContactForm() {
           >
             <p>
               <span className="text-accent mr-3">→</span>
-              hola@noiz.mx
+              hola@noiz.com.mx
             </p>
             <p>
               <span className="text-accent mr-3">→</span>
