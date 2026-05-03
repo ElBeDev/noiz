@@ -1,5 +1,7 @@
 "use server";
 
+import { Resend } from "resend";
+
 export interface ContactState {
   status: "idle" | "success" | "error";
   message: string;
@@ -15,7 +17,6 @@ export async function submitContact(
   const message = (formData.get("message") as string)?.trim();
   const service = (formData.get("service") as string)?.trim();
 
-  // Basic validation
   if (!name || !email || !message) {
     return { status: "error", message: "Nombre, email y mensaje son requeridos." };
   }
@@ -25,18 +26,28 @@ export async function submitContact(
     return { status: "error", message: "El email no es válido." };
   }
 
-  // TODO: Connect to email provider (Resend, Nodemailer, etc.)
-  // Example with Resend:
-  // const resend = new Resend(process.env.RESEND_API_KEY);
-  // await resend.emails.send({
-  //   from: "hola@noiz.mx",
-  //   to: "hola@noiz.mx",
-  //   subject: `Nuevo contacto: ${name}`,
-  //   html: `<p>Nombre: ${name}</p><p>Email: ${email}</p><p>Empresa: ${company}</p><p>Servicio: ${service}</p><p>Mensaje: ${message}</p>`,
-  // });
+  const resend = new Resend(process.env.RESEND_API_KEY);
 
-  // Log for now (remove in production)
-  console.log("[NOIZ Contact]", { name, email, company, service, message });
+  const { error } = await resend.emails.send({
+    from: "NOIZ Contacto <onboarding@resend.dev>",
+    to: "hola@noiz.com.mx",
+    replyTo: email,
+    subject: `Nuevo contacto: ${name}`,
+    html: `
+      <h2>Nuevo mensaje de contacto</h2>
+      <p><strong>Nombre:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      ${company ? `<p><strong>Empresa:</strong> ${company}</p>` : ""}
+      ${service ? `<p><strong>Servicio:</strong> ${service}</p>` : ""}
+      <p><strong>Mensaje:</strong></p>
+      <p>${message.replace(/\n/g, "<br>")}</p>
+    `,
+  });
+
+  if (error) {
+    console.error("[NOIZ Contact] Resend error:", error);
+    return { status: "error", message: "Hubo un error al enviar tu mensaje. Inténtalo de nuevo." };
+  }
 
   return {
     status: "success",
