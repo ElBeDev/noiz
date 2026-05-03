@@ -5,7 +5,6 @@ import GrainOverlay from "@/components/GrainOverlay";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
 import PageTransition from "@/components/PageTransition";
-import { Analytics } from "@vercel/analytics/react";
 
 const syne = Syne({
   variable: "--font-syne",
@@ -50,7 +49,6 @@ export default function RootLayout({
         <SmoothScroll>
           <PageTransition>{children}</PageTransition>
         </SmoothScroll>
-        <Analytics />
       </body>
     </html>
   );
