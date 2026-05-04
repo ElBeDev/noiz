@@ -62,22 +62,22 @@ export default function ServicePage({ service }: Props) {
             {service.number} — Servicio
           </motion.p>
 
-          <div className="overflow-hidden mb-4">
+          <div className="mb-4">
             <motion.h1
               className="font-display font-extrabold text-5xl md:text-7xl lg:text-8xl text-white uppercase leading-none tracking-tight"
-              initial={{ y: "110%" }}
-              animate={{ y: "0%" }}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
             >
               {service.name}
             </motion.h1>
           </div>
 
-          <div className="overflow-hidden mb-10">
+          <div className="mb-10">
             <motion.p
               className="font-display font-semibold text-2xl md:text-3xl text-accent uppercase tracking-tight"
-              initial={{ y: "110%" }}
-              animate={{ y: "0%" }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.12 }}
             >
               {service.tagline}
