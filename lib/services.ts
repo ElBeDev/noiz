@@ -314,7 +314,7 @@ export const services: Service[] = [
     name: "Expansión y Escalamiento",
     tagline: "Crecer sin límites.",
     description:
-      "Apps, medios tradicionales (Televisa Qro.) y estrategias para crecer sin límites.",
+      "Apps, medios tradicionales y estrategias para crecer sin límites.",
     longDescription:
       "Cuando tu marca ya tiene base, es momento de expandir. En NOIZ diseñamos las estrategias para llevar tu negocio al siguiente nivel: nuevos mercados, nuevos canales, medios masivos y tecnología propia.",
     deliverables: [
