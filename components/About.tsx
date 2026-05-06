@@ -61,7 +61,7 @@ export default function About() {
           </div>
 
           {/* Stats row */}
-          <div className="flex gap-10 md:gap-16 mt-16 pt-10 border-t border-border">
+          <div className="flex flex-wrap gap-10 md:gap-16 mt-16 pt-10 border-t border-border w-full min-w-0">
             {stats.map((stat, i) => (
               <motion.div
                 key={stat.label}
