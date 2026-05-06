@@ -11,12 +11,12 @@ const stats = [
 
 export default function About() {
   return (
-    <section id="nosotros" className="border-t border-border">
-      <div className="grid md:grid-cols-[3fr_2fr] min-h-170">
+    <section id="nosotros" className="border-t border-border w-full overflow-hidden">
+      <div className="grid md:grid-cols-[3fr_2fr] min-h-170 w-full">
 
         {/* Left — all text content */}
-        <div className="flex flex-col justify-between px-6 md:px-12 py-24 md:py-32">
-          <div>
+        <div className="flex flex-col justify-between px-6 md:px-12 py-24 md:py-32 min-w-0">
+          <div className="w-full min-w-0">
             <motion.p
               className="text-xs tracking-[0.3em] text-accent uppercase font-medium mb-6"
               initial={{ opacity: 0, y: 20 }}
