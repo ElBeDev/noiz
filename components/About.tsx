@@ -11,7 +11,7 @@ const stats = [
 
 export default function About() {
   return (
-    <section id="nosotros" className="border-t border-border overflow-hidden">
+    <section id="nosotros" className="border-t border-border">
       <div className="grid md:grid-cols-[3fr_2fr] min-h-170">
 
         {/* Left — all text content */}

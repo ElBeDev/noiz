@@ -41,7 +41,7 @@ export default function Hero() {
       </div>
 
       {/* NOIZ wordmark */}
-      <div className="relative my-2">
+      <div className="relative my-2 -mx-6 md:-mx-12">
         <motion.div
           className="absolute bottom-2 left-0 h-px bg-white/10 w-full"
           initial={{ scaleX: 0 }}
