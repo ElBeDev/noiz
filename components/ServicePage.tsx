@@ -64,7 +64,8 @@ export default function ServicePage({ service }: Props) {
 
           <div className="mb-4">
             <motion.h1
-              className="font-display font-extrabold text-5xl md:text-7xl lg:text-8xl text-white uppercase leading-none tracking-tight"
+              className="font-display font-extrabold text-white uppercase leading-none tracking-tight"
+              style={{ fontSize: "clamp(2.5rem, 11vw, 8rem)" }}
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
