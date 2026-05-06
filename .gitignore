@@ -38,4 +38,7 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# sensitive deployment info - never commit
+DEPLOY.md
 next-env.d.ts
