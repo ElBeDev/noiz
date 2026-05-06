@@ -38,7 +38,7 @@ export default function ServicePage({ service }: Props) {
       </nav>
 
       {/* ── Hero ─────────────────────────────────────────────────── */}
-      <section className="relative pt-32 pb-16 px-6 md:px-12 border-b border-border overflow-hidden">
+      <section className="relative pt-32 pb-16 px-6 md:px-12 border-b border-border overflow-x-hidden">
         {/* Background watermark */}
         <div
           aria-hidden
@@ -64,8 +64,8 @@ export default function ServicePage({ service }: Props) {
 
           <div className="mb-4">
             <motion.h1
-              className="font-display font-extrabold text-white uppercase leading-none tracking-tight"
-              style={{ fontSize: "clamp(2.5rem, 11vw, 8rem)" }}
+              className="font-display font-extrabold text-white uppercase leading-[1.05] tracking-tight w-full"
+              style={{ fontSize: "clamp(1.9rem, 9vw, 8rem)" }}
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
@@ -76,7 +76,8 @@ export default function ServicePage({ service }: Props) {
 
           <div className="mb-10">
             <motion.p
-              className="font-display font-semibold text-2xl md:text-3xl text-accent uppercase tracking-tight"
+              className="font-display font-semibold text-accent uppercase tracking-tight"
+              style={{ fontSize: "clamp(1.1rem, 4.5vw, 1.875rem)" }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.12 }}
@@ -203,7 +204,7 @@ export default function ServicePage({ service }: Props) {
             <p className="text-xs tracking-[0.3em] text-accent uppercase font-medium mb-4">
               ¿Listo para empezar?
             </p>
-            <h2 className="font-display font-extrabold text-3xl md:text-5xl text-white uppercase leading-none tracking-tight">
+            <h2 className="font-display font-extrabold text-white uppercase leading-none tracking-tight" style={{ fontSize: "clamp(1.6rem, 6vw, 3rem)" }}>
               Hablemos de tu
               <br />
               <span className="text-accent">proyecto.</span>
@@ -232,7 +233,7 @@ export default function ServicePage({ service }: Props) {
             <span className="text-xs tracking-[0.2em] text-white/30 uppercase font-light">
               ← Anterior
             </span>
-            <span className="font-display font-bold text-lg md:text-2xl text-white uppercase leading-tight tracking-tight group-hover:text-accent transition-colors duration-300">
+            <span className="font-display font-bold text-white uppercase leading-tight tracking-tight group-hover:text-accent transition-colors duration-300" style={{ fontSize: "clamp(0.9rem, 3.5vw, 1.5rem)" }}>
               {prev.name}
             </span>
           </Link>
@@ -248,7 +249,7 @@ export default function ServicePage({ service }: Props) {
             <span className="text-xs tracking-[0.2em] text-white/30 uppercase font-light">
               Siguiente →
             </span>
-            <span className="font-display font-bold text-lg md:text-2xl text-white uppercase leading-tight tracking-tight group-hover:text-accent transition-colors duration-300">
+            <span className="font-display font-bold text-white uppercase leading-tight tracking-tight group-hover:text-accent transition-colors duration-300" style={{ fontSize: "clamp(0.9rem, 3.5vw, 1.5rem)" }}>
               {next.name}
             </span>
           </Link>
