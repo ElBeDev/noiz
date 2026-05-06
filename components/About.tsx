@@ -38,7 +38,7 @@ export default function About() {
             </motion.h2>
 
             <motion.div
-              className="space-y-4 max-w-lg"
+              className="space-y-4 w-full max-w-lg"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
