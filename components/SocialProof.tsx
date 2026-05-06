@@ -26,7 +26,7 @@ const testimonials = [
 
 export default function SocialProof() {
   return (
-    <section className="px-6 md:px-12 py-24 md:py-32 border-t border-border overflow-hidden">
+    <section className="px-6 md:px-12 py-24 md:py-32 border-t border-border">
       <div className="flex items-end justify-between mb-16 md:mb-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
