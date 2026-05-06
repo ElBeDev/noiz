@@ -47,7 +47,7 @@ export default function SocialProof() {
         {testimonials.map((t, i) => (
           <motion.div
             key={i}
-            className="flex flex-col gap-6 p-8 border border-border border-r-0 last:border-r first:border-l hover:bg-white/2 transition-colors duration-300 group"
+            className="flex flex-col gap-6 p-8 border border-border md:border-r-0 md:last:border-r md:first:border-l hover:bg-white/2 transition-colors duration-300 group"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
