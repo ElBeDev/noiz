@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import ScrambleText from "./ScrambleText";
 
 const links = [
   { label: "Servicios", href: "/#servicios" },
@@ -37,10 +37,17 @@ export default function Nav() {
         {/* Logo */}
         <Link
           href="/"
-          className="font-display font-extrabold text-xl tracking-tight text-white uppercase"
+          className="flex items-center"
           onClick={() => setOpen(false)}
         >
-          <ScrambleText text="NOIZ" duration={900} triggerOnHover />
+          <Image
+            src="/logo.svg"
+            alt="NOIZ"
+            width={120}
+            height={68}
+            priority
+            className="h-8 w-auto"
+          />
         </Link>
 
         {/* Desktop links */}
