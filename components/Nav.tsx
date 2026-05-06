@@ -46,7 +46,7 @@ export default function Nav() {
             width={120}
             height={68}
             priority
-            className="h-24 w-auto -translate-x-[5px]"
+            className="h-24 w-auto"
           />
         </Link>
 
