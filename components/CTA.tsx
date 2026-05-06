@@ -34,28 +34,24 @@ export default function CTA() {
         </motion.p>
 
         {/* Big headline */}
-        <div className="overflow-hidden mb-4">
-          <motion.h2
-            className="font-display font-extrabold text-5xl md:text-7xl lg:text-8xl text-white uppercase leading-none tracking-tight"
-            initial={{ y: "110%", opacity: 0 }}
-            whileInView={{ y: "0%", opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          >
-            ¿Listos para
-          </motion.h2>
-        </div>
-        <div className="overflow-hidden mb-12 md:mb-16">
-          <motion.h2
-            className="font-display font-extrabold text-5xl md:text-7xl lg:text-8xl text-accent uppercase leading-none tracking-tight"
-            initial={{ y: "110%", opacity: 0 }}
-            whileInView={{ y: "0%", opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-          >
-            escalar?
-          </motion.h2>
-        </div>
+        <motion.h2
+          className="font-display font-extrabold text-5xl md:text-7xl lg:text-8xl text-white uppercase leading-none tracking-tight mb-4"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        >
+          ¿Listos para
+        </motion.h2>
+        <motion.h2
+          className="font-display font-extrabold text-5xl md:text-7xl lg:text-8xl text-accent uppercase leading-none tracking-tight mb-12 md:mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+        >
+          escalar?
+        </motion.h2>
 
         {/* Description + CTA */}
         <motion.div

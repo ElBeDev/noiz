@@ -27,17 +27,15 @@ export default function About() {
               Quiénes somos
             </motion.p>
 
-            <div className="overflow-hidden mb-8">
-              <motion.h2
-                className="font-display font-extrabold text-5xl md:text-6xl lg:text-7xl text-white uppercase leading-none tracking-tight"
-                initial={{ y: "110%" }}
-                whileInView={{ y: "0%" }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-              >
-                Somos NOIZ.
-              </motion.h2>
-            </div>
+            <motion.h2
+              className="font-display font-extrabold text-5xl md:text-6xl lg:text-7xl text-white uppercase leading-none tracking-tight mb-8"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            >
+              Somos NOIZ.
+            </motion.h2>
 
             <motion.div
               className="space-y-4 max-w-lg"

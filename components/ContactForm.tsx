@@ -25,19 +25,17 @@ export default function ContactForm() {
             Hablemos
           </motion.p>
 
-          <div className="overflow-hidden mb-6">
-            <motion.h2
-              className="font-display font-extrabold text-4xl md:text-6xl text-white uppercase leading-none tracking-tight"
-              initial={{ y: "110%" }}
-              whileInView={{ y: "0%" }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            >
-              Tu marca,
-              <br />
-              <span className="text-accent">nuestro trabajo.</span>
-            </motion.h2>
-          </div>
+          <motion.h2
+            className="font-display font-extrabold text-4xl md:text-6xl text-white uppercase leading-none tracking-tight mb-6"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          >
+            Tu marca,
+            <br />
+            <span className="text-accent">nuestro trabajo.</span>
+          </motion.h2>
 
           <motion.p
             className="font-light text-base text-white/50 leading-relaxed max-w-sm"
@@ -101,7 +99,7 @@ export default function ContactForm() {
                 exit={{ opacity: 0 }}
               >
                 {/* Name + Company */}
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <FormField name="name" label="Nombre *" placeholder="Tu nombre" />
                   <FormField name="company" label="Empresa" placeholder="Opcional" />
                 </div>
