@@ -42,8 +42,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className={`${syne.variable} ${inter.variable}`}>
-      <body>
+    <html lang="es" className={`${syne.variable} ${inter.variable}`} style={{ overflowX: "hidden" }}>
+      <body style={{ overflowX: "hidden" }}>
         <GrainOverlay />
         <CustomCursor />
         <SmoothScroll>

@@ -65,6 +65,8 @@ html {
   background: #000;
   scrollbar-width: thin;
   scrollbar-color: #222 #000;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
@@ -74,6 +76,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  max-width: 100%;
 }
 
 @media (pointer: fine) {

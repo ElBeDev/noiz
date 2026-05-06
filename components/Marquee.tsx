@@ -24,7 +24,7 @@ export default function Marquee() {
   const doubled = [...items, ...items];
 
   return (
-    <div className="relative border-y border-border py-5 overflow-hidden">
+    <div className="relative border-y border-border py-5 overflow-hidden w-full">
       <div className="flex w-max animate-marquee">
         {doubled.map((item, i) => (
           <span
