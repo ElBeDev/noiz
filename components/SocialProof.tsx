@@ -37,7 +37,7 @@ export default function SocialProof() {
           <p className="text-xs tracking-[0.3em] text-accent uppercase font-medium mb-3">
             Lo que dicen
           </p>
-          <h2 className="font-display font-extrabold text-4xl md:text-5xl lg:text-6xl text-white uppercase leading-none tracking-tight">
+          <h2 className="font-display font-extrabold text-white uppercase leading-none tracking-tight" style={{ fontSize: "clamp(1.8rem, 8vw, 4rem)" }}>
             Resultados
           </h2>
         </motion.div>
