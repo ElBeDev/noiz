@@ -50,7 +50,7 @@ export default function Hero() {
           style={{ transformOrigin: "left" }}
         />
         <motion.h1
-          className="font-display font-extrabold leading-none tracking-[-0.03em] text-white select-none"
+          className="font-display font-extrabold leading-none tracking-[-0.03em] text-white select-none text-center"
           style={{ fontSize: "clamp(5.5rem, 22vw, 22rem)" }}
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
