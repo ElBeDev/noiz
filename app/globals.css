@@ -67,6 +67,8 @@ html {
   scrollbar-color: #222 #000;
   overflow-x: hidden;
   max-width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -77,6 +79,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   max-width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 @media (pointer: fine) {

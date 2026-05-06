@@ -29,10 +29,10 @@ export default function GrainOverlay() {
         style={{
           filter: "url(#grain-filter)",
           opacity: 0.055,
-          width: "110%",
-          height: "110%",
-          top: "-5%",
-          left: "-5%",
+          width: "100%",
+          height: "100%",
+          top: "0",
+          left: "0",
           mixBlendMode: "overlay",
         }}
       />

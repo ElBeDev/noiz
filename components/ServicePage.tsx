@@ -38,7 +38,7 @@ export default function ServicePage({ service }: Props) {
       </nav>
 
       {/* ── Hero ─────────────────────────────────────────────────── */}
-      <section className="relative pt-32 pb-16 px-6 md:px-12 border-b border-border overflow-x-hidden">
+      <section className="relative pt-32 pb-16 px-6 md:px-12 border-b border-border">
         {/* Background watermark */}
         <div
           aria-hidden
@@ -64,8 +64,8 @@ export default function ServicePage({ service }: Props) {
 
           <div className="mb-4">
             <motion.h1
-              className="font-display font-extrabold text-white uppercase leading-[1.05] tracking-tight w-full"
-              style={{ fontSize: "clamp(1.9rem, 9vw, 8rem)" }}
+              className="font-display font-extrabold text-white uppercase leading-tight tracking-tight w-full"
+              style={{ fontSize: "clamp(1.5rem, 5.5vw, 7rem)", wordBreak: "break-word", overflowWrap: "anywhere" }}
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
