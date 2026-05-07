@@ -56,22 +56,25 @@ function NoizWordmark() {
             </span>
           );
         }
-        // "I" slot — wrapper span handles position+centering, motion.span only animates
+        // "I" slot — dot anchored to the char itself via relative wrapper
         return (
           <span key={i} className="relative inline-block">
             <span className="invisible">{targetChar}</span>
-            <span className="absolute inset-0 flex items-center justify-center">
-              {/* plain span: translateX(-50%) won't be touched by Framer Motion */}
-              <span style={{ position: "absolute", top: "-0.38em", left: "50%", transform: "translateX(-50%)" }}>
-                <motion.span
-                  className="bg-accent rounded-full block"
-                  style={{ width: "0.3em", height: "0.3em" }}
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={showDot ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                />
+            <span className="absolute inset-0" style={{ display: "grid", placeItems: "center" }}>
+              {/* relative span wraps the char; dot is positioned relative to THIS, not the slot */}
+              <span style={{ position: "relative" }}>
+                {/* plain span: translateX(-50%) is safe here — not a motion element */}
+                <span style={{ position: "absolute", bottom: "100%", left: "50%", transform: "translateX(-50%)", paddingBottom: "0.12em" }}>
+                  <motion.span
+                    className="bg-accent rounded-full block"
+                    style={{ width: "0.3em", height: "0.3em" }}
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={showDot ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  />
+                </span>
+                {chars[i]}
               </span>
-              {chars[i]}
             </span>
           </span>
         );
