@@ -25,6 +25,13 @@ export const metadata: Metadata = {
   description:
     "Creamos, estructuramos y escalamos marcas que venden. Branding, estrategia digital, campañas y más.",
   metadataBase: new URL("https://noiz.mx"),
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.png", type: "image/png", sizes: "32x32" },
+    ],
+    apple: "/apple-icon.png",
+  },
   openGraph: {
     type: "website",
     locale: "es_MX",
