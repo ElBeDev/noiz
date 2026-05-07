@@ -61,7 +61,7 @@ function NoizWordmark() {
                 width: "0.3em",
                 height: "0.3em",
                 bottom: "100%",
-                marginBottom: "-0.05em",
+                marginBottom: "-0.18em",
                 left: "50%",
                 x: "-50%",
               }}
