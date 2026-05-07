@@ -4,11 +4,14 @@ import { useActionState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { submitContact, type ContactState } from "@/app/actions/contact";
 import { services } from "@/lib/services";
+import { useLang } from "@/lib/i18n";
 
 const initialState: ContactState = { status: "idle", message: "" };
 
 export default function ContactForm() {
   const [state, formAction, pending] = useActionState(submitContact, initialState);
+  const { t, lang } = useLang();
+  const c = t.contact;
 
   return (
     <section id="contacto" className="px-6 md:px-12 py-24 md:py-32 border-t border-border">
@@ -22,7 +25,7 @@ export default function ContactForm() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
-            Hablemos
+            {c.eyebrow}
           </motion.p>
 
           <motion.h2
@@ -32,9 +35,9 @@ export default function ContactForm() {
             viewport={{ once: true }}
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           >
-            Tu marca,
+            {c.headingLine1}
             <br />
-            <span className="text-accent">nuestro trabajo.</span>
+            <span className="text-accent">{c.headingLine2}</span>
           </motion.h2>
 
           <motion.p
@@ -44,7 +47,7 @@ export default function ContactForm() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Cuéntanos qué necesitas. Respondemos en menos de 24 horas.
+            {c.body}
           </motion.p>
 
           <motion.div
@@ -84,10 +87,10 @@ export default function ContactForm() {
               >
                 <span className="font-display font-extrabold text-5xl text-accent">✓</span>
                 <p className="font-display font-bold text-2xl text-white uppercase">
-                  ¡Listo!
+                  {c.successTitle}
                 </p>
                 <p className="font-light text-base text-white/50 leading-relaxed">
-                  {state.message}
+                  {c.successBody}
                 </p>
               </motion.div>
             ) : (
@@ -100,41 +103,41 @@ export default function ContactForm() {
               >
                 {/* Name + Company */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <FormField name="name" label="Nombre *" placeholder="Tu nombre" />
-                  <FormField name="company" label="Empresa" placeholder="Opcional" />
+                  <FormField name="name" label={c.labelName} placeholder={c.placeholderName} />
+                  <FormField name="company" label={c.labelCompany} placeholder={c.placeholderOptional} />
                 </div>
 
                 {/* Email */}
-                <FormField name="email" type="email" label="Email *" placeholder="hola@tuempresa.com" />
+                <FormField name="email" type="email" label={c.labelEmail} placeholder="hola@tuempresa.com" />
 
                 {/* Service select */}
                 <div className="flex flex-col gap-2">
                   <label className="text-xs tracking-[0.2em] uppercase text-white/40 font-medium">
-                    Servicio de interés
+                    {c.labelService}
                   </label>
                   <select
                     name="service"
                     className="bg-transparent border border-border text-white/70 text-sm font-light px-4 py-3 focus:outline-none focus:border-accent transition-colors duration-300 appearance-none cursor-pointer"
                   >
-                    <option value="" className="bg-black">Seleccionar...</option>
+                    <option value="" className="bg-black">{c.placeholderService}</option>
                     {services.map((s) => (
                       <option key={s.slug} value={s.slug} className="bg-black">
-                        {s.name}
+                        {lang === "en" ? s.en.name : s.name}
                       </option>
                     ))}
-                    <option value="varios" className="bg-black">Varios servicios</option>
+                    <option value="varios" className="bg-black">{c.labelMultiple}</option>
                   </select>
                 </div>
 
                 {/* Message */}
                 <div className="flex flex-col gap-2">
                   <label className="text-xs tracking-[0.2em] uppercase text-white/40 font-medium">
-                    Mensaje *
+                    {c.labelMessage}
                   </label>
                   <textarea
                     name="message"
                     rows={5}
-                    placeholder="Cuéntanos de tu proyecto..."
+                    placeholder={c.placeholderMessage}
                     className="bg-transparent border border-border text-white/80 text-sm font-light px-4 py-3 focus:outline-none focus:border-accent transition-colors duration-300 resize-none placeholder:text-white/20"
                   />
                 </div>
@@ -150,7 +153,7 @@ export default function ContactForm() {
                   disabled={pending}
                   className="group self-start inline-flex items-center gap-4 border border-white/20 px-8 py-4 font-display font-bold text-sm tracking-[0.2em] uppercase text-white hover:border-accent hover:bg-accent hover:text-black transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <span>{pending ? "Enviando..." : "Enviar mensaje"}</span>
+                  <span>{pending ? c.submitting : c.submit}</span>
                   {!pending && (
                     <span className="text-lg transition-transform duration-300 group-hover:translate-x-1">
                       →

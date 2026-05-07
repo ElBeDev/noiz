@@ -2,19 +2,25 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import type { Service } from "@/lib/services";
+import type { Service, ServiceContent } from "@/lib/services";
 import ScrambleText from "./ScrambleText";
 import { services } from "@/lib/services";
+import { useLang } from "@/lib/i18n";
 
 interface Props {
   service: Service;
 }
 
 export default function ServicePage({ service }: Props) {
+  const { t, lang } = useLang();
+  const sp = t.servicePage;
+  const content: ServiceContent = lang === "en" ? service.en : service;
   const currentIndex = services.findIndex((s) => s.slug === service.slug);
   const prev = currentIndex > 0 ? services[currentIndex - 1] : null;
   const next =
     currentIndex < services.length - 1 ? services[currentIndex + 1] : null;
+  const prevContent = prev ? (lang === "en" ? prev.en : prev) : null;
+  const nextContent = next ? (lang === "en" ? next.en : next) : null;
 
   return (
     <main className="min-h-screen bg-black">
@@ -33,7 +39,7 @@ export default function ServicePage({ service }: Props) {
           <span className="transition-transform duration-300 group-hover:-translate-x-1">
             ←
           </span>
-          Servicios
+          {sp.backToServices}
         </Link>
       </nav>
 
@@ -59,7 +65,7 @@ export default function ServicePage({ service }: Props) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
-            {service.number} — Servicio
+            {service.number} — {sp.service}
           </motion.p>
 
           <div className="mb-4">
@@ -70,7 +76,7 @@ export default function ServicePage({ service }: Props) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
             >
-              {service.name}
+              {content.name}
             </motion.h1>
           </div>
 
@@ -82,7 +88,7 @@ export default function ServicePage({ service }: Props) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.12 }}
             >
-              {service.tagline}
+              {content.tagline}
             </motion.p>
           </div>
 
@@ -92,7 +98,7 @@ export default function ServicePage({ service }: Props) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
-            {service.longDescription}
+            {content.longDescription}
           </motion.p>
         </div>
       </section>
@@ -107,10 +113,10 @@ export default function ServicePage({ service }: Props) {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           <p className="text-xs tracking-[0.3em] text-accent uppercase font-medium mb-8">
-            Qué incluye
+            {sp.includes}
           </p>
           <ul className="space-y-0">
-            {service.deliverables.map((item, i) => (
+            {content.deliverables.map((item, i) => (
               <motion.li
                 key={i}
                 className="flex items-start gap-4 py-4 border-b border-border last:border-0"
@@ -140,10 +146,10 @@ export default function ServicePage({ service }: Props) {
           transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
         >
           <p className="text-xs tracking-[0.3em] text-accent uppercase font-medium mb-8">
-            Cómo lo hacemos
+            {sp.howWeDoIt}
           </p>
           <div className="space-y-8">
-            {service.steps.map((step, i) => (
+            {content.steps.map((step, i) => (
               <motion.div
                 key={i}
                 className="flex gap-5"
@@ -183,10 +189,10 @@ export default function ServicePage({ service }: Props) {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           <p className="text-xs tracking-[0.3em] text-accent uppercase font-medium mb-6">
-            Resultado
+            {sp.result}
           </p>
           <p className="font-display font-bold text-2xl md:text-3xl lg:text-4xl text-white leading-snug tracking-tight">
-            {service.result}
+            {content.result}
           </p>
         </motion.div>
       </section>
@@ -202,12 +208,12 @@ export default function ServicePage({ service }: Props) {
         >
           <div>
             <p className="text-xs tracking-[0.3em] text-accent uppercase font-medium mb-4">
-              ¿Listo para empezar?
+              {sp.readyToStart}
             </p>
             <h2 className="font-display font-extrabold text-white uppercase leading-none tracking-tight" style={{ fontSize: "clamp(1.6rem, 6vw, 3rem)" }}>
-              Hablemos de tu
+              {sp.ctaLine1}
               <br />
-              <span className="text-accent">proyecto.</span>
+              <span className="text-accent">{sp.ctaLine2}</span>
             </h2>
           </div>
 
@@ -215,7 +221,7 @@ export default function ServicePage({ service }: Props) {
             href="mailto:hola@noiz.com.mx"
             className="group inline-flex items-center gap-4 border border-white/20 px-8 py-5 font-display font-bold text-sm tracking-[0.2em] uppercase text-white hover:border-accent hover:text-black hover:bg-accent transition-all duration-300 shrink-0"
           >
-            <span>Contactar</span>
+            <span>{sp.ctaButton}</span>
             <span className="text-lg transition-transform duration-300 group-hover:translate-x-1">
               →
             </span>
@@ -231,10 +237,10 @@ export default function ServicePage({ service }: Props) {
             className="group flex flex-col gap-2 px-6 md:px-12 py-10 border-r border-border hover:bg-white/2 transition-colors duration-300"
           >
             <span className="text-xs tracking-[0.2em] text-white/30 uppercase font-light">
-              ← Anterior
+              {sp.prev}
             </span>
             <span className="font-display font-bold text-white uppercase leading-tight tracking-tight group-hover:text-accent transition-colors duration-300" style={{ fontSize: "clamp(0.9rem, 3.5vw, 1.5rem)" }}>
-              {prev.name}
+              {prevContent?.name}
             </span>
           </Link>
         ) : (
@@ -247,10 +253,10 @@ export default function ServicePage({ service }: Props) {
             className="group flex flex-col gap-2 items-end text-right px-6 md:px-12 py-10 hover:bg-white/2 transition-colors duration-300"
           >
             <span className="text-xs tracking-[0.2em] text-white/30 uppercase font-light">
-              Siguiente →
+              {sp.next}
             </span>
             <span className="font-display font-bold text-white uppercase leading-tight tracking-tight group-hover:text-accent transition-colors duration-300" style={{ fontSize: "clamp(0.9rem, 3.5vw, 1.5rem)" }}>
-              {next.name}
+              {nextContent?.name}
             </span>
           </Link>
         ) : (
@@ -265,7 +271,7 @@ export default function ServicePage({ service }: Props) {
             NOIZ
           </span>
           <p className="text-xs font-light text-white/20 tracking-[0.15em] uppercase">
-            © 2026 — Marcas que venden.
+            {sp.copyright}
           </p>
         </div>
       </footer>

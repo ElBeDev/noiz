@@ -3,9 +3,7 @@ export interface ServiceStep {
   description: string;
 }
 
-export interface Service {
-  number: string;
-  slug: string;
+export interface ServiceContent {
   name: string;
   tagline: string;
   description: string;
@@ -13,6 +11,12 @@ export interface Service {
   deliverables: string[];
   steps: ServiceStep[];
   result: string;
+}
+
+export interface Service extends ServiceContent {
+  number: string;
+  slug: string;
+  en: ServiceContent;
 }
 
 export const services: Service[] = [
@@ -56,7 +60,42 @@ export const services: Service[] = [
     ],
     result:
       "Una marca sólida, diferenciada y lista para crecer. Con identidad propia y reglas claras para escalar.",
-  },
+    en: {
+      name: "Brand Creation",
+      tagline: "Your brand, from scratch.",
+      description: "Naming, concept, branding and identity from the ground up.",
+      longDescription:
+        "A brand is more than just a logo. It's the way the world perceives you, remembers you, and chooses you over the competition. At NOIZ we build brands with character, coherence and purpose from day one.",
+      deliverables: [
+        "Strategic naming",
+        "Brand concept and purpose",
+        "Full visual identity (logo, typography, palette, iconography)",
+        "Brand guidelines",
+        "Voice and tone of communication",
+        "Moodboard and visual system",
+      ],
+      steps: [
+        {
+          title: "Research & diagnosis",
+          description:
+            "We analyze your market, competition and target audience to find the space where your brand can dominate.",
+        },
+        {
+          title: "Concept & naming",
+          description:
+            "We develop the name and concept that defines who you are, what you sell and why they should choose you.",
+        },
+        {
+          title: "Visual identity",
+          description:
+            "We design the complete visual system: logo, color palette, typography and all the elements that make your brand recognizable.",
+        },
+        {
+          title: "Guidelines & delivery",
+          description:
+            "We document every element so your brand stays consistent across every channel, now and always.",
+        },
+      ],
   {
     number: "02",
     slug: "estructura-de-negocio",
@@ -97,6 +136,45 @@ export const services: Service[] = [
     ],
     result:
       "Un negocio con estructura clara, oferta irresistible y un embudo que convierte de forma consistente.",
+    en: {
+      name: "Business Structure",
+      tagline: "No structure, no scale.",
+      description: "Business model, offer, pricing and sales funnel.",
+      longDescription:
+        "Many brands have a great product but a poor business. At NOIZ we structure how you sell, how much you charge and how you convert strangers into high-value clients. We build the system that grows your company.",
+      deliverables: [
+        "Documented business model",
+        "Offer definition and refinement",
+        "Pricing strategy and service tiers",
+        "End-to-end sales funnel",
+        "Customer journey map",
+        "Revenue projection",
+      ],
+      steps: [
+        {
+          title: "Business audit",
+          description:
+            "We review where you are today: revenue, sales channels, current offer and customer leak points.",
+        },
+        {
+          title: "Offer design",
+          description:
+            "We define what you sell, how you package it and how you present it to maximize conversion and average ticket.",
+        },
+        {
+          title: "Pricing strategy",
+          description:
+            "We structure your price tiers to be competitive, profitable and easy to sell.",
+        },
+        {
+          title: "Sales funnel",
+          description:
+            "We map every stage of the customer journey from discovery to purchase to referral.",
+        },
+      ],
+      result:
+        "A business with clear structure, an irresistible offer and a funnel that converts consistently.",
+    },
   },
   {
     number: "03",
@@ -139,6 +217,45 @@ export const services: Service[] = [
     ],
     result:
       "Una marca con posición clara en el mercado, mensaje poderoso y la estrategia para mantener ese lugar.",
+    en: {
+      name: "Brand Positioning",
+      tagline: "Be the first in your customer's mind.",
+      description: "Strategy, key message and differentiation that makes you stand out.",
+      longDescription:
+        "In a saturated market, positioning is what decides who wins. Being good isn't enough — you have to be the obvious choice. At NOIZ we build the strategy that puts your brand in the right place, in the right mind, at the right time.",
+      deliverables: [
+        "Deep competitive analysis",
+        "Unique value proposition (UVP)",
+        "Core brand message",
+        "Brand archetype and personality",
+        "Differentiation strategy",
+        "External communication guide",
+      ],
+      steps: [
+        {
+          title: "Environment analysis",
+          description:
+            "We map your direct and indirect competitors to find the space where your brand can dominate without competing on price.",
+        },
+        {
+          title: "Audience definition",
+          description:
+            "We identify with surgical precision who you're talking to, what pains them and what they need to hear to decide.",
+        },
+        {
+          title: "Message & differentiation",
+          description:
+            "We build the message that sets you apart and the brand story that connects with your audience authentically.",
+        },
+        {
+          title: "Presence strategy",
+          description:
+            "We define which channels you should be on, with what tone and frequency to keep your positioning consistent.",
+        },
+      ],
+      result:
+        "A brand with a clear market position, a powerful message and the strategy to maintain that position.",
+    },
   },
   {
     number: "04",
@@ -181,6 +298,45 @@ export const services: Service[] = [
     ],
     result:
       "Un ecosistema digital funcional, integrado y listo para escalar sin necesitar más personal.",
+    en: {
+      name: "Digital Ecosystem",
+      tagline: "Your digital presence, no gaps.",
+      description: "Social media, website, automation and AI to optimize and scale.",
+      longDescription:
+        "Your digital ecosystem is the sum of every touchpoint a customer has with you online. At NOIZ we build it in an integrated way so each channel feeds the next and the whole system scales on its own.",
+      deliverables: [
+        "Digital ecosystem strategy",
+        "Website design and development",
+        "Optimized social media setup",
+        "Tool and CRM integration",
+        "Capture and follow-up automations",
+        "Unified metrics dashboard",
+      ],
+      steps: [
+        {
+          title: "Ecosystem map",
+          description:
+            "We chart all the relevant digital channels for your brand and how they should be connected to each other.",
+        },
+        {
+          title: "Web development",
+          description:
+            "We build your website as the center of the ecosystem: fast, conversion-oriented and aligned with your identity.",
+        },
+        {
+          title: "Channel activation",
+          description:
+            "We configure and optimize every channel: bio, links, forms, pixels, catalogs and everything you need to capture leads.",
+        },
+        {
+          title: "Automation & integration",
+          description:
+            "We connect your tools so that follow-up, lead nurturing and analysis happen automatically.",
+        },
+      ],
+      result:
+        "A functional, integrated digital ecosystem ready to scale without needing more staff.",
+    },
   },
   {
     number: "05",
@@ -223,6 +379,45 @@ export const services: Service[] = [
     ],
     result:
       "Campañas que generan resultados medibles, con estrategia clara y optimización constante para escalar.",
+    en: {
+      name: "Advertising Campaigns",
+      tagline: "Investment that becomes sales.",
+      description: "Strategy and management of campaigns on Meta, Google and more.",
+      longDescription:
+        "Paid advertising is the accelerator, not the engine. At NOIZ we design campaigns with strategy behind them: the right message, for the right person, at the right moment. We manage your investment so every dollar works.",
+      deliverables: [
+        "Paid media strategy",
+        "Audience segmentation",
+        "Copy and creative production",
+        "Campaign setup and launch",
+        "Continuous optimization",
+        "Monthly performance reports",
+      ],
+      steps: [
+        {
+          title: "Strategy & goals",
+          description:
+            "We define what we want to achieve, who we're talking to and how much we're willing to invest per conversion.",
+        },
+        {
+          title: "Creatives & copy",
+          description:
+            "We produce the materials your customers will see: ads that stop the scroll and generate action.",
+        },
+        {
+          title: "Setup & launch",
+          description:
+            "We configure campaigns with the right structure of ad sets, audiences, budgets and optimization objectives.",
+        },
+        {
+          title: "Optimization & scale",
+          description:
+            "We monitor results in real time and adjust to lower cost per lead and increase ROAS.",
+        },
+      ],
+      result:
+        "Campaigns that generate measurable results, with clear strategy and constant optimization to scale.",
+    },
   },
   {
     number: "06",
@@ -265,6 +460,45 @@ export const services: Service[] = [
     ],
     result:
       "Una presencia de contenido consistente, estratégica y que construye autoridad mes a mes.",
+    en: {
+      name: "Strategic Content",
+      tagline: "Content that sells without selling.",
+      description: "Content that connects, positions and converts into customers.",
+      longDescription:
+        "Content without strategy is just noise. At NOIZ we produce content with purpose: every post, video or article is designed to build authority, generate trust and move your audience toward the buying decision.",
+      deliverables: [
+        "Content strategy by channel",
+        "Monthly editorial calendar",
+        "Content production (text, design, video)",
+        "Reel/short video script and direction",
+        "Copywriting for social media and web",
+        "Content performance analysis",
+      ],
+      steps: [
+        {
+          title: "Editorial strategy",
+          description:
+            "We define the content pillars, frequency, formats and tone that will dominate your communication.",
+        },
+        {
+          title: "Monthly planning",
+          description:
+            "We build the editorial calendar with topics, formats and goals for each piece before producing.",
+        },
+        {
+          title: "Production",
+          description:
+            "We create the content: design, copy, video editing and all the formats your strategy needs.",
+        },
+        {
+          title: "Publishing & analysis",
+          description:
+            "We publish, track metrics and adjust the strategy based on what truly connects with your audience.",
+        },
+      ],
+      result:
+        "A consistent, strategic content presence that builds authority month by month.",
+    },
   },
   {
     number: "07",
@@ -307,6 +541,45 @@ export const services: Service[] = [
     ],
     result:
       "Un negocio que opera más eficiente, responde más rápido y escala sin necesitar más personal.",
+    en: {
+      name: "AI Automation",
+      tagline: "Scale without hiring more.",
+      description: "We implement AI tools to make your brand more efficient.",
+      longDescription:
+        "Artificial intelligence is no longer the future — it's today's competitive edge. At NOIZ we implement AI solutions that automate the repetitive processes in your business so your team can focus on what truly matters.",
+      deliverables: [
+        "Automatable process audit",
+        "AI chatbot implementation",
+        "Customer service automation",
+        "Automatic follow-up flows",
+        "AI-assisted content generation",
+        "Integration with existing tools",
+      ],
+      steps: [
+        {
+          title: "Process mapping",
+          description:
+            "We identify which tasks repeat in your business, how much time they consume and which have the greatest impact when automated.",
+        },
+        {
+          title: "Solution design",
+          description:
+            "We choose the most suitable AI tools and technologies for each process: chatbots, flows, content generation, analysis.",
+        },
+        {
+          title: "Implementation",
+          description:
+            "We build and integrate the automations with the tools you already use: CRM, social media, email, WhatsApp.",
+        },
+        {
+          title: "Training & monitoring",
+          description:
+            "We train your team to get maximum value and monitor that the systems work correctly.",
+        },
+      ],
+      result:
+        "A business that operates more efficiently, responds faster and scales without needing more staff.",
+    },
   },
   {
     number: "08",
@@ -349,6 +622,45 @@ export const services: Service[] = [
     ],
     result:
       "Una marca que crece de forma estructurada, con presencia en más canales y mayor penetración de mercado.",
+    en: {
+      name: "Expansion & Scaling",
+      tagline: "Grow without limits.",
+      description: "Apps, traditional media and strategies to grow without limits.",
+      longDescription:
+        "When your brand already has a foundation, it's time to expand. At NOIZ we design the strategies to take your business to the next level: new markets, new channels, mass media and proprietary technology.",
+      deliverables: [
+        "Market expansion strategy",
+        "Mobile app planning and development",
+        "Traditional media relations management",
+        "Mass media campaigns (TV, radio, OOH)",
+        "Franchise or licensing strategy",
+        "12-24 month growth roadmap",
+      ],
+      steps: [
+        {
+          title: "Scale diagnosis",
+          description:
+            "We evaluate where your business is and what conditions are needed to expand without losing quality or profitability.",
+        },
+        {
+          title: "Expansion strategy",
+          description:
+            "We define the markets, channels and formats where your brand can grow with lower risk and greater impact.",
+        },
+        {
+          title: "Multichannel execution",
+          description:
+            "We activate expansion channels: traditional media, app development, new geographies or business verticals.",
+        },
+        {
+          title: "Sustainable scaling",
+          description:
+            "We build the systems, processes and partnerships for your growth to be consistent, measurable and sustainable over time.",
+        },
+      ],
+      result:
+        "A brand that grows in a structured way, with presence in more channels and greater market penetration.",
+    },
   },
 ];
 

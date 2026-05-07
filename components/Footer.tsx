@@ -1,8 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useLang } from "@/lib/i18n";
 
 export default function Footer() {
+  const { t } = useLang();
+  const f = t.footer;
   return (
     <footer className="px-6 md:px-12 py-8 border-t border-border">
       <motion.div
@@ -17,7 +20,7 @@ export default function Footer() {
         </span>
 
         <p className="text-xs font-light text-white/20 tracking-[0.15em] uppercase">
-          © 2026 — Marcas que venden.
+          {f.copyright}
         </p>
 
         <div className="flex gap-6">
@@ -25,13 +28,13 @@ export default function Footer() {
             href="#servicios"
             className="text-xs font-light text-white/30 hover:text-white transition-colors tracking-[0.15em] uppercase"
           >
-            Servicios
+            {f.services}
           </a>
           <a
             href="#contacto"
             className="text-xs font-light text-white/30 hover:text-white transition-colors tracking-[0.15em] uppercase"
           >
-            Contacto
+            {f.contact}
           </a>
         </div>
       </motion.div>

@@ -3,8 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-
-const taglineLines = ["CREAMOS,", "ESTRUCTURAMOS", "Y ESCALAMOS", "MARCAS QUE VENDEN."];
+import { useLang } from "@/lib/i18n";
 
 const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@$%&!*";
 const WORD = ["N", "O", "I", "Z"];
@@ -102,6 +101,7 @@ function NoizWordmark() {
 
 
 export default function Hero() {
+  const { t } = useLang();
   return (
     <section className="relative min-h-[100svh] flex flex-col justify-between px-6 md:px-12 pt-24 md:pt-28 pb-8 md:pb-10 overflow-hidden w-full">
       {/* Background image */}
@@ -118,9 +118,9 @@ export default function Hero() {
 
       {/* Tagline */}
       <div className="relative flex flex-col gap-0.5 max-w-2xl">
-        {taglineLines.map((line, i) => (
+        {t.hero.tagline.map((line, i) => (
           <motion.p
-            key={line}
+            key={i}
             className="font-display font-semibold text-lg md:text-2xl lg:text-3xl text-white/80 leading-tight uppercase tracking-tight"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -160,7 +160,7 @@ export default function Hero() {
           Est. 2024
         </span>
         <div className="flex items-center gap-3 text-white/30">
-          <span className="text-xs tracking-[0.25em] uppercase font-light">Scroll</span>
+          <span className="text-xs tracking-[0.25em] uppercase font-light">{t.hero.scroll}</span>
           <motion.div
             className="w-px h-8 md:h-10 bg-white/20 origin-top"
             initial={{ scaleY: 0 }}

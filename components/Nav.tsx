@@ -4,16 +4,18 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-
-const links = [
-  { label: "Servicios", href: "/#servicios" },
-  { label: "Nosotros", href: "/#nosotros" },
-  { label: "Contacto", href: "/#contacto" },
-];
+import { useLang } from "@/lib/i18n";
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { lang, setLang, t } = useLang();
+
+  const links = [
+    { label: t.nav.services, href: "/#servicios" },
+    { label: t.nav.about, href: "/#nosotros" },
+    { label: t.nav.contact, href: "/#contacto" },
+  ];
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 40);
@@ -50,7 +52,7 @@ export default function Nav() {
           />
         </Link>
 
-        {/* Desktop links */}
+        {/* Desktop links + lang toggle */}
         <div className="hidden md:flex items-center gap-10">
           {links.map((l) => (
             <Link
@@ -62,13 +64,29 @@ export default function Nav() {
               <span className="block absolute -bottom-px left-0 w-0 h-px bg-accent group-hover:w-full transition-all duration-400" />
             </Link>
           ))}
+          {/* Language toggle */}
+          <div className="flex items-center gap-2 border-l border-white/10 pl-8">
+            <button
+              onClick={() => setLang("es")}
+              className={`text-xs font-medium tracking-[0.2em] uppercase transition-colors duration-300 ${lang === "es" ? "text-accent" : "text-white/30 hover:text-white/60"}`}
+            >
+              ES
+            </button>
+            <span className="text-white/15 text-xs">·</span>
+            <button
+              onClick={() => setLang("en")}
+              className={`text-xs font-medium tracking-[0.2em] uppercase transition-colors duration-300 ${lang === "en" ? "text-accent" : "text-white/30 hover:text-white/60"}`}
+            >
+              EN
+            </button>
+          </div>
         </div>
 
         {/* Hamburger — mobile only */}
         <button
           className="md:hidden flex flex-col justify-center items-end gap-1.5 w-8 h-8 shrink-0"
           onClick={() => setOpen((v) => !v)}
-          aria-label={open ? "Cerrar menú" : "Abrir menú"}
+          aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
           aria-expanded={open}
         >
           <motion.span
@@ -125,9 +143,27 @@ export default function Nav() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.5 }}
-              className="text-xs font-light text-white/20 tracking-[0.2em] uppercase"
+              className="flex items-center justify-between"
             >
-              © 2026 NOIZ — Marcas que venden.
+              <span className="text-xs font-light text-white/20 tracking-[0.2em] uppercase">
+                {t.nav.mobileFooter}
+              </span>
+              {/* Mobile lang toggle */}
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => { setLang("es"); setOpen(false); }}
+                  className={`text-xs font-medium tracking-[0.2em] uppercase transition-colors duration-300 ${lang === "es" ? "text-accent" : "text-white/30"}`}
+                >
+                  ES
+                </button>
+                <span className="text-white/15 text-xs">·</span>
+                <button
+                  onClick={() => { setLang("en"); setOpen(false); }}
+                  className={`text-xs font-medium tracking-[0.2em] uppercase transition-colors duration-300 ${lang === "en" ? "text-accent" : "text-white/30"}`}
+                >
+                  EN
+                </button>
+              </div>
             </motion.div>
           </motion.div>
         )}

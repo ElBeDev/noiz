@@ -5,6 +5,7 @@ import GrainOverlay from "@/components/GrainOverlay";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
 import PageTransition from "@/components/PageTransition";
+import { LangProvider } from "@/lib/i18n";
 
 const syne = Syne({
   variable: "--font-syne",
@@ -51,11 +52,13 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${syne.variable} ${inter.variable}`}>
       <body>
-        <GrainOverlay />
-        <CustomCursor />
-        <SmoothScroll>
-          <PageTransition>{children}</PageTransition>
-        </SmoothScroll>
+        <LangProvider>
+          <GrainOverlay />
+          <CustomCursor />
+          <SmoothScroll>
+            <PageTransition>{children}</PageTransition>
+          </SmoothScroll>
+        </LangProvider>
       </body>
     </html>
   );

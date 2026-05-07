@@ -2,14 +2,11 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-
-const stats = [
-  { value: "8+", label: "Servicios" },
-  { value: "100%", label: "Resultados" },
-  { value: "360°", label: "Visión" },
-];
+import { useLang } from "@/lib/i18n";
 
 export default function About() {
+  const { t } = useLang();
+  const { about } = t;
   return (
     <section id="nosotros" className="border-t border-border w-full overflow-hidden">
       <div className="grid md:grid-cols-[3fr_2fr] min-h-170 w-full">
@@ -24,7 +21,7 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             >
-              Quiénes somos
+              {about.eyebrow}
             </motion.p>
 
             <motion.h2
@@ -34,7 +31,7 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             >
-              Somos NOIZ.
+              {about.heading}
             </motion.h2>
 
             <motion.div
@@ -45,24 +42,20 @@ export default function About() {
               transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             >
               <p className="font-light text-base md:text-lg text-white/60 leading-relaxed">
-                Somos una agencia de marca y estrategia digital que transforma
-                negocios en marcas que venden. No hacemos solo diseño, ni solo
-                publicidad. Hacemos el todo.
+                {about.p1}
               </p>
               <p className="font-light text-base md:text-lg text-white/60 leading-relaxed">
-                Desde el naming hasta las campañas de escala, acompañamos a cada
-                cliente con una visión completa: marca sólida, negocio
-                estructurado y ecosistema digital que crece solo.
+                {about.p2}
               </p>
               <p className="font-light text-sm text-white/30 leading-relaxed">
-                Querétaro · Nacional · Internacional
+                {about.location}
               </p>
             </motion.div>
           </div>
 
           {/* Stats row */}
           <div className="flex flex-wrap gap-10 md:gap-16 mt-16 pt-10 border-t border-border w-full min-w-0">
-            {stats.map((stat, i) => (
+            {about.stats.map((stat, i) => (
               <motion.div
                 key={stat.label}
                 initial={{ opacity: 0, y: 20 }}

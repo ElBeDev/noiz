@@ -3,9 +3,11 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import ScrambleText from "./ScrambleText";
-import { services, type Service } from "@/lib/services";
+import { services, type Service, type ServiceContent } from "@/lib/services";
+import { useLang, type Lang } from "@/lib/i18n";
 
 export default function Services() {
+  const { t, lang } = useLang();
   return (
     <section id="servicios" className="px-6 md:px-12 py-24 md:py-32">
       {/* Section header */}
@@ -17,10 +19,10 @@ export default function Services() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           <p className="text-xs tracking-[0.3em] text-accent uppercase font-medium mb-3">
-            Lo que hacemos
+            {t.services.eyebrow}
           </p>
           <h2 className="font-display font-extrabold text-white uppercase leading-none tracking-tight" style={{ fontSize: "clamp(1.8rem, 8vw, 4rem)" }}>
-            Servicios
+            {t.services.heading}
           </h2>
         </motion.div>
 
@@ -31,21 +33,22 @@ export default function Services() {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          08 servicios
+          {t.services.count}
         </motion.span>
       </div>
 
       {/* Services list */}
       <div>
         {services.map((service, i) => (
-          <ServiceRow key={service.number} service={service} index={i} />
+          <ServiceRow key={service.number} service={service} index={i} lang={lang} />
         ))}
       </div>
     </section>
   );
 }
 
-function ServiceRow({ service, index }: { service: Service; index: number }) {
+function ServiceRow({ service, index, lang }: { service: Service; index: number; lang: Lang }) {
+  const content: ServiceContent = lang === "en" ? service.en : service;
   return (
     <motion.div
       className="group relative"
@@ -74,7 +77,7 @@ function ServiceRow({ service, index }: { service: Service; index: number }) {
         <div className="flex-1 min-w-0">
           <h3 className="font-display font-bold text-2xl md:text-3xl lg:text-4xl text-white uppercase leading-tight tracking-tight group-hover:text-accent transition-colors duration-300">
             <ScrambleText
-              text={service.name.toUpperCase()}
+              text={content.name.toUpperCase()}
               duration={600}
               triggerOnHover
             />
@@ -83,7 +86,7 @@ function ServiceRow({ service, index }: { service: Service; index: number }) {
 
         {/* Description — desktop only */}
         <p className="hidden md:block font-light text-sm text-white/40 max-w-xs text-right leading-relaxed shrink-0 group-hover:text-white/70 transition-colors duration-300">
-          {service.description}
+          {content.description}
         </p>
 
         {/* Arrow */}
@@ -94,7 +97,7 @@ function ServiceRow({ service, index }: { service: Service; index: number }) {
 
       {/* Description — mobile only */}
       <p className="md:hidden font-light text-sm text-white/40 pb-6 leading-relaxed">
-        {service.description}
+        {content.description}
       </p>
 
       {/* Bottom border for last item */}
