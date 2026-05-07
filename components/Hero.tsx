@@ -61,9 +61,8 @@ function NoizWordmark() {
                 width: "0.3em",
                 height: "0.3em",
                 bottom: "100%",
-                marginBottom: "-0.18em",
-                left: "50%",
-                x: "-50%",
+                marginBottom: "-0.12em",
+                left: "calc(50% - 0.15em)",
               }}
               initial={{ scale: 0, opacity: 0 }}
               animate={showDot ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
