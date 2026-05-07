@@ -56,7 +56,18 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
         >
-          <ScrambleText text="NOIZ" delay={200} duration={1400} />
+          <ScrambleText text="NO" delay={200} duration={1400} />
+          <span className="relative inline-block">
+            <ScrambleText text="I" delay={200} duration={1400} />
+            <motion.span
+              className="absolute bg-accent rounded-full"
+              style={{ width: "0.14em", height: "0.14em", top: "-0.08em", left: "50%", translateX: "-50%" }}
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 1.5, ease: [0.22, 1, 0.36, 1] }}
+            />
+          </span>
+          <ScrambleText text="Z" delay={200} duration={1400} />
         </motion.h1>
       </div>
 
