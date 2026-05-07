@@ -56,18 +56,21 @@ function NoizWordmark() {
             </span>
           );
         }
-        // "I" slot — dot rendered as sibling inside same flex container as char
+        // "I" slot — wrapper span handles position+centering, motion.span only animates
         return (
           <span key={i} className="relative inline-block">
             <span className="invisible">{targetChar}</span>
-            <span className="absolute inset-0 flex flex-col items-center justify-center">
-              <motion.span
-                className="bg-accent rounded-full"
-                style={{ width: "0.3em", height: "0.3em", flexShrink: 0, position: "absolute", top: "-0.38em", left: "50%", marginLeft: "-0.15em" }}
-                initial={{ scale: 0, opacity: 0 }}
-                animate={showDot ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              />
+            <span className="absolute inset-0 flex items-center justify-center">
+              {/* plain span: translateX(-50%) won't be touched by Framer Motion */}
+              <span style={{ position: "absolute", top: "-0.38em", left: "50%", transform: "translateX(-50%)" }}>
+                <motion.span
+                  className="bg-accent rounded-full block"
+                  style={{ width: "0.3em", height: "0.3em" }}
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={showDot ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                />
+              </span>
               {chars[i]}
             </span>
           </span>
