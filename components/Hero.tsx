@@ -13,77 +13,92 @@ function rand() {
   return CHARS[Math.floor(Math.random() * CHARS.length)];
 }
 
+// Centers (x, y) of each letter in viewBox 0 0 1500 375
+const LETTER_CX = [240, 698, 1002, 1284];
+
 function NoizWordmark() {
-  // Start with random chars so there's no layout shift on mount
   const [chars, setChars] = useState<string[]>(() => WORD.map(() => rand()));
+  const [locked, setLocked] = useState([false, false, false, false]);
   const [showDot, setShowDot] = useState(false);
   const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
     const start = performance.now();
     const duration = 1400;
-
     const tick = (now: number) => {
       const elapsed = now - start;
       const progress = Math.min(elapsed / duration, 1);
-      // Lock letters one by one as progress advances
-      const locked = Math.floor(progress * WORD.length);
-      setChars(WORD.map((ch, i) => (i < locked ? ch : rand())));
+      const lockedCount = Math.floor(progress * WORD.length);
+      setChars(WORD.map((ch, i) => (i < lockedCount ? ch : rand())));
+      setLocked(WORD.map((_, i) => i < lockedCount));
       if (progress < 1) {
         rafRef.current = requestAnimationFrame(tick);
       } else {
         setChars([...WORD]);
+        setLocked([true, true, true, true]);
         setShowDot(true);
       }
     };
-
     rafRef.current = requestAnimationFrame(tick);
-    return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    };
+    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
   }, []);
 
   return (
-    <>
-      {WORD.map((targetChar, i) => {
-        if (i !== 2) {
-          return (
-            <span key={i} className="relative inline-block">
-              <span className="invisible">{targetChar}</span>
-              <span className="absolute inset-0 flex items-center justify-center">
-                {chars[i]}
-              </span>
-            </span>
-          );
-        }
-        // "I" slot — dot anchored to the char itself via relative wrapper
-        return (
-          <span key={i} className="relative inline-block">
-            <span className="invisible">{targetChar}</span>
-            <span className="absolute inset-0" style={{ display: "grid", placeItems: "center" }}>
-              {/* relative span wraps the char; dot is positioned relative to THIS, not the slot */}
-              <span style={{ position: "relative" }}>
-                {/* plain span: translateX(-50%) is safe here — not a motion element */}
-                <span style={{ position: "absolute", bottom: "100%", left: "50%", transform: "translateX(-50%)", paddingBottom: "0.12em" }}>
-                  <motion.span
-                    className="bg-accent rounded-full block"
-                    style={{ width: "0.3em", height: "0.3em" }}
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={showDot ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                  />
-                </span>
-                {chars[i]}
-              </span>
-            </span>
-          </span>
-        );
-      })}
-    </>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1500 374.999991"
+      preserveAspectRatio="xMidYMid meet"
+      style={{ width: "100%", height: "auto", display: "block" }}
+      aria-label="NOIZ"
+      role="img"
+    >
+      {/* N — path fades in when locked, scramble text fades out */}
+      <motion.g initial={{ opacity: 0 }} animate={{ opacity: locked[0] ? 1 : 0 }} transition={{ duration: 0.15 }}>
+        <path fill="#fff" d="M 386.996094 286.636719 L 354.613281 305.082031 L 354.613281 132.058594 L 441.652344 132.058594 L 441.652344 354.863281 L 354.613281 354.863281 L 92.472656 203.074219 L 124.855469 184.273438 L 124.855469 354.851562 L 37.820312 354.851562 L 37.820312 132.050781 L 124.855469 132.050781 L 386.996094 286.617188 Z" />
+      </motion.g>
+      <motion.g initial={{ opacity: 1 }} animate={{ opacity: locked[0] ? 0 : 1 }} transition={{ duration: 0.15 }}>
+        <text x={LETTER_CX[0]} y="243" textAnchor="middle" dominantBaseline="central" fill="#fff" fontSize="310" fontWeight="900" fontFamily="sans-serif">{chars[0]}</text>
+      </motion.g>
+
+      {/* O */}
+      <motion.g initial={{ opacity: 0 }} animate={{ opacity: locked[1] ? 1 : 0 }} transition={{ duration: 0.15 }}>
+        <path fill="#fff" d="M 697.53125 361.828125 C 646.929688 361.828125 606.195312 357.355469 575.335938 348.425781 C 544.464844 339.496094 522.015625 326.269531 507.972656 308.734375 C 493.933594 291.207031 486.917969 269.453125 486.917969 243.460938 C 486.917969 217.46875 493.933594 195.714844 507.972656 178.1875 C 522.015625 160.664062 544.464844 147.4375 575.335938 138.496094 C 606.195312 129.566406 646.929688 125.09375 697.53125 125.09375 C 748.132812 125.09375 788.855469 129.566406 819.726562 138.496094 C 850.585938 147.4375 873.046875 160.664062 887.089844 178.1875 C 901.132812 195.714844 908.148438 217.476562 908.148438 243.460938 C 908.148438 269.445312 901.121094 291.21875 887.089844 308.734375 C 873.046875 326.257812 850.585938 339.484375 819.726562 348.425781 C 788.855469 357.355469 748.125 361.828125 697.53125 361.828125 Z M 697.53125 295.683594 C 721.433594 295.683594 742.089844 294.242188 759.496094 291.335938 C 776.90625 288.429688 790.359375 283.210938 799.875 275.664062 C 809.394531 268.128906 814.152344 257.386719 814.152344 243.460938 C 814.152344 229.535156 809.394531 218.800781 799.875 211.257812 C 790.359375 203.71875 776.894531 198.5 759.496094 195.585938 C 742.089844 192.691406 721.433594 191.238281 697.53125 191.238281 C 673.628906 191.238281 652.679688 192.691406 634.691406 195.585938 C 616.707031 198.488281 602.664062 203.710938 592.566406 211.257812 C 582.46875 218.800781 577.425781 229.535156 577.425781 243.460938 C 577.425781 257.386719 582.46875 268.121094 592.566406 275.664062 C 602.664062 283.210938 616.707031 288.429688 634.691406 291.335938 C 652.679688 294.242188 673.617188 295.683594 697.53125 295.683594 Z" />
+      </motion.g>
+      <motion.g initial={{ opacity: 1 }} animate={{ opacity: locked[1] ? 0 : 1 }} transition={{ duration: 0.15 }}>
+        <text x={LETTER_CX[1]} y="243" textAnchor="middle" dominantBaseline="central" fill="#fff" fontSize="310" fontWeight="900" fontFamily="sans-serif">{chars[1]}</text>
+      </motion.g>
+
+      {/* I */}
+      <motion.g initial={{ opacity: 0 }} animate={{ opacity: locked[2] ? 1 : 0 }} transition={{ duration: 0.15 }}>
+        <path fill="#fff" d="M 958.621094 132.058594 L 1045.660156 132.058594 L 1045.660156 354.863281 L 958.621094 354.863281 Z" />
+      </motion.g>
+      <motion.g initial={{ opacity: 1 }} animate={{ opacity: locked[2] ? 0 : 1 }} transition={{ duration: 0.15 }}>
+        <text x={LETTER_CX[2]} y="243" textAnchor="middle" dominantBaseline="central" fill="#fff" fontSize="310" fontWeight="900" fontFamily="sans-serif">{chars[2]}</text>
+      </motion.g>
+
+      {/* Z */}
+      <motion.g initial={{ opacity: 0 }} animate={{ opacity: locked[3] ? 1 : 0 }} transition={{ duration: 0.15 }}>
+        <path fill="#fff" d="M 1099.609375 132.058594 L 1468.625 132.058594 L 1468.625 198.207031 L 1215.1875 302.992188 L 1212.402344 288.714844 L 1468.625 288.714844 L 1468.625 354.863281 L 1099.609375 354.863281 L 1099.609375 288.714844 L 1354.09375 183.929688 L 1356.882812 198.207031 L 1099.617188 198.207031 Z" />
+      </motion.g>
+      <motion.g initial={{ opacity: 1 }} animate={{ opacity: locked[3] ? 0 : 1 }} transition={{ duration: 0.15 }}>
+        <text x={LETTER_CX[3]} y="243" textAnchor="middle" dominantBaseline="central" fill="#fff" fontSize="310" fontWeight="900" fontFamily="sans-serif">{chars[3]}</text>
+      </motion.g>
+
+      {/* Dot — exact coordinates from the original SVG */}
+      <motion.circle
+        fill="#d5f318"
+        cx="1001.875"
+        cy="63.3125"
+        r="49.0625"
+        initial={{ scale: 0, opacity: 0 }}
+        animate={showDot ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+        style={{ transformOrigin: "1001.875px 63.3125px" }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      />
+    </svg>
   );
 }
 
-// --- dead SVG code removed ---
 
 
 export default function Hero() {
@@ -129,10 +144,7 @@ export default function Hero() {
           transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           style={{ transformOrigin: "left" }}
         />
-        <h1
-          className="font-display font-extrabold leading-none tracking-[-0.03em] text-white select-none text-center w-full px-2 md:px-4"
-          style={{ fontSize: "clamp(5.5rem, 22vw, 22rem)" }}
-        >
+        <h1 className="select-none w-full">
           <NoizWordmark />
         </h1>
       </div>
