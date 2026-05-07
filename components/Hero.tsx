@@ -2,9 +2,64 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import ScrambleText from "./ScrambleText";
 
 const taglineLines = ["CREAMOS,", "ESTRUCTURAMOS", "Y ESCALAMOS", "MARCAS QUE VENDEN."];
+
+const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@$%&!*";
+const WORD = ["N", "O", "I", "Z"];
+
+function NoizWordmark() {
+  const [chars, setChars] = useState(["", "", "", ""]);
+  const [showDot, setShowDot] = useState(false);
+  const rafRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      const start = performance.now();
+      const duration = 1400;
+      const animate = (now: number) => {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const revealedCount = Math.floor(progress * WORD.length);
+        setChars(WORD.map((char, i) => {
+          if (i < revealedCount) return char;
+          return CHARS[Math.floor(Math.random() * CHARS.length)];
+        }));
+        if (progress < 1) {
+          rafRef.current = requestAnimationFrame(animate);
+        } else {
+          setChars([...WORD]);
+          setShowDot(true);
+        }
+      };
+      rafRef.current = requestAnimationFrame(animate);
+    }, 200);
+    return () => {
+      clearTimeout(timeout);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, []);
+
+  return (
+    <>
+      <span>{chars[0]}</span>
+      <span>{chars[1]}</span>
+      <span className="relative inline-block">
+        {chars[2]}
+        <motion.span
+          className="absolute bg-accent rounded-full"
+          style={{ width: "0.22em", height: "0.22em", top: "-0.08em", left: "50%", translateX: "-50%" }}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={showDot ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        />
+      </span>
+      <span>{chars[3]}</span>
+    </>
+  );
+}
 
 export default function Hero() {
   return (
@@ -56,18 +111,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
         >
-          <ScrambleText text="NO" delay={200} duration={1400} />
-          <span className="relative inline-block">
-            <ScrambleText text="I" delay={200} duration={1400} />
-            <motion.span
-              className="absolute bg-accent rounded-full"
-              style={{ width: "0.14em", height: "0.14em", top: "-0.08em", left: "50%", translateX: "-50%" }}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 1.5, ease: [0.22, 1, 0.36, 1] }}
-            />
-          </span>
-          <ScrambleText text="Z" delay={200} duration={1400} />
+          <NoizWordmark />
         </motion.h1>
       </div>
 
