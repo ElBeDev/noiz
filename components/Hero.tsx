@@ -60,12 +60,10 @@ function NoizWordmark() {
               style={{
                 width: "0.3em",
                 height: "0.3em",
-                bottom: "100%",
-                marginBottom: "-0.14em",
+                bottom: "calc(100% - 0.14em)",
                 left: 0,
                 right: 0,
                 margin: "0 auto",
-                marginBottom: "-0.14em",
               }}
             >
               <motion.span
