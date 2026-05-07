@@ -56,8 +56,15 @@ function NoizWordmark() {
           {/* Accent dot above the I */}
           {i === 2 && (
             <motion.span
-              className="absolute bg-accent rounded-full pointer-events-none left-1/2 -translate-x-1/2"
-              style={{ width: "0.44em", height: "0.44em", top: "-0.53em" }}
+              className="absolute bg-accent rounded-full pointer-events-none"
+              style={{
+                width: "0.3em",
+                height: "0.3em",
+                bottom: "100%",
+                marginBottom: "0.08em",
+                left: "50%",
+                x: "-50%",
+              }}
               initial={{ scale: 0, opacity: 0 }}
               animate={showDot ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
