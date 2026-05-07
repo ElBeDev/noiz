@@ -96,6 +96,10 @@ export const services: Service[] = [
             "We document every element so your brand stays consistent across every channel, now and always.",
         },
       ],
+      result:
+        "A solid, differentiated brand ready to grow. With its own identity and clear rules to scale.",
+    },
+  },
   {
     number: "02",
     slug: "estructura-de-negocio",
