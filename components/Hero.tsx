@@ -45,31 +45,35 @@ function NoizWordmark() {
 
   return (
     <>
-      {WORD.map((targetChar, i) => (
-        <span key={i} className="relative inline-block">
-          {/* Invisible target char to always reserve the correct width */}
-          <span className="invisible">{targetChar}</span>
-          {/* Scrambled / locked char on top */}
-          <span className="absolute inset-0 flex items-center justify-center">
-            {chars[i]}
-          </span>
-          {/* Accent dot above the I */}
-          {i === 2 && (
-            <span
-              className="absolute left-0 right-0 flex justify-center pointer-events-none"
-              style={{ bottom: "calc(100% - 0.14em)" }}
-            >
+      {WORD.map((targetChar, i) => {
+        if (i !== 2) {
+          return (
+            <span key={i} className="relative inline-block">
+              <span className="invisible">{targetChar}</span>
+              <span className="absolute inset-0 flex items-center justify-center">
+                {chars[i]}
+              </span>
+            </span>
+          );
+        }
+        // "I" slot — dot rendered as sibling inside same flex container as char
+        return (
+          <span key={i} className="relative inline-block">
+            <span className="invisible">{targetChar}</span>
+            <span className="absolute inset-0 flex flex-col items-center justify-center">
+              {/* dot lives here so it shares the same flex centering axis as the char */}
               <motion.span
                 className="bg-accent rounded-full"
-                style={{ width: "0.3em", height: "0.3em", flexShrink: 0 }}
+                style={{ width: "0.3em", height: "0.3em", flexShrink: 0, marginBottom: "0.08em", position: "absolute", top: "-0.38em" }}
                 initial={{ scale: 0, opacity: 0 }}
                 animate={showDot ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               />
+              {chars[i]}
             </span>
-          )}
-        </span>
-      ))}
+          </span>
+        );
+      })}
     </>
   );
 }
