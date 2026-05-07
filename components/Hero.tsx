@@ -63,7 +63,7 @@ function NoizWordmark() {
             <span className="absolute inset-0 flex flex-col items-center justify-center">
               <motion.span
                 className="bg-accent rounded-full"
-                style={{ width: "0.3em", height: "0.3em", flexShrink: 0, position: "absolute", top: "-0.38em", left: "50%" }}
+                style={{ width: "0.3em", height: "0.3em", flexShrink: 0, position: "absolute", top: "-0.38em", left: "100%" }}
                 initial={{ scale: 0, opacity: 0, x: "-50%" }}
                 animate={showDot ? { scale: 1, opacity: 1, x: "-50%" } : { scale: 0, opacity: 0, x: "-50%" }}
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
